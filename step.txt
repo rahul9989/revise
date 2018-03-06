@@ -1,0 +1,57 @@
+First install Node JS
+
+1. Got to Project (Command Prompt e:)
+
+2. create package.json:  npm init
+
+3. Install local grunt:  npm install grunt --save-dev
+
+4. Create Gruntfile.js: create custom
+
+5. module.exports = function(grunt) { }
+
+6. // Project configuration.
+   grunt.initConfig({ });
+
+7. // Package
+   pkg: grunt.file.readJSON('package.json'),
+
+8. // Uglify
+   uglify: {
+      options: {
+        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+      },
+      build: {
+        src: 'src/<%= pkg.name %>.js',
+        dest: 'build/<%= pkg.name %>.min.js'
+      }
+   }
+
+9. Whole Code : 
+
+   module.exports = function(grunt) {
+
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+
+  grunt.initConfig({
+
+    // package
+    pkg: grunt.file.readJSON('package.json'),
+
+    // minify or "uglify" javascript files
+    uglify: {
+        options: {
+          banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+        },
+        build: {
+          src: 'wltProject/js/custom.js',
+          dest: 'wltProjectUpdatedFiles/js/<%= pkg.name %>.min.js'
+        }
+      }
+  });
+
+  grunt.registerTask('default', ['uglify']);
+}
+
+
+10. Run code on command prompt for uglify: npm install grunt-contrib-uglify --save-dev
